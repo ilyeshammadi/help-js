@@ -1,0 +1,60 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    {% block css %}
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% endblock %}
+
+    <title>Django Blog</title>
+</head>
+
+<body>
+
+{% include 'navbar.html' %}
+
+
+<div id="content">
+    <div class="row">
+        <div class="col-xs-10 col-sm-8 col-md-6 col-xs-offset-1 col-sm-offset-2 col-md-offset-3">
+            {# Django Messages #}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+    {% block content %} {% endblock %}
+</div>
+
+{% block javascript %}
+    <script
+            src="https://code.jquery.com/jquery-3.1.1.min.js"
+            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+            crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+    <script>
+        // Remove the Django message after 5 seconds
+        setTimeout(function () {
+            let $target = $('.alert');
+            $target.hide('slow', function () {
+                $target.remove();
+            });
+        }, 5000);
+    </script>
+{% endblock %}
+
+</body>
+
+</html>

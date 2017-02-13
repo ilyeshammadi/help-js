@@ -1,0 +1,17 @@
+body {
+    background-color: #fafafa;
+}
+
+#content {
+    margin-top: 80px !important;
+}
+
+.navbar-default {
+    background-color: #fff !important;
+}
+
+.logo {
+    font-family: SignPainter, serif !important;
+    font-size: 36px;
+    color: #3385c2 !important;
+}

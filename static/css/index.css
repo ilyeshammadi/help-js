@@ -1,0 +1,46 @@
+.user-profile {
+    margin-top: 10px;
+    margin-left: -6px;
+    margin-bottom: 14px;
+}
+
+
+.user-profile .user-name {
+    display: inline;
+    margin-left: 5px;
+    font-family: Roboto, serif;
+    font-size: 14px;
+    vertical-align: middle;
+    line-height: 16px;
+    font-weight: 600;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.article-time {
+    text-align: right;
+    padding-top: 10px;
+    padding-right: 18px;
+}
+
+.article-time p {
+    color: grey;
+    vertical-align: middle;
+    display: inline;
+}
+
+.article-time .dropdown {
+    display: inline;
+}
+
+.article-time .btn-default {
+    border: none;
+}
+
+
+.thumbnail:hover {
+    border: 1px solid #3385c2 !important;
+    cursor: hand !important;
+    cursor: pointer !important;
+}

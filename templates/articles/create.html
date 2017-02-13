@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags static %}
+
+
+{% block css %}
+    {{ block.super }}
+    <link rel="stylesheet" href="{% static 'css/create.css' %}">
+{% endblock %}
+
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="form-card">
+                    <h3>Create article</h3>
+                    <form action="{% url 'articles:create' %}" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <button type="submit" class="save btn btn-default">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
