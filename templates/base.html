@@ -8,12 +8,13 @@
 
     {% block css %}
         <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'css/bootstrap/dist/css/bootstrap.min.css' %}">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="{% static 'css/ionicons-2.0.1/css/ionicons.min.css' %}">
         <link rel="stylesheet" href="{% static 'css/base.css' %}">
     {% endblock %}
 
-    <title>Django Blog</title>
+    <title>HelpJS</title>
 </head>
 
 <body>
@@ -36,13 +37,18 @@
 </div>
 
 {% block javascript %}
-    <script
-            src="https://code.jquery.com/jquery-3.1.1.min.js"
-            integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-            crossorigin="anonymous"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <script>
+        var username = "{{ request.user.username }}";
+        var userProfileImage = "{{ request.user.profile_image.url }}"
+    </script>
+
+    <script src="{% static 'js/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static 'css/jquery.countdown-2.1.0/jquery.countdown.min.js' %}"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="{% static 'css/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.2.6/ace.js"></script>
+    <script src="{% static 'js/app.js' %}"></script>
 
     <script>
         // Remove the Django message after 5 seconds

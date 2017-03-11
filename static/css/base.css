@@ -3,7 +3,7 @@ body {
 }
 
 #content {
-    margin-top: 80px !important;
+    margin-top: 51px !important;
 }
 
 .navbar-default {
@@ -14,4 +14,17 @@ body {
     font-family: SignPainter, serif !important;
     font-size: 36px;
     color: #3385c2 !important;
+}
+
+
+/* ============================= */
+
+/* ========= HEADER =============*/
+
+/* ============================= */
+
+header {
+    height: calc(100vh - 51px);
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url(../img/hero.jpg);
+    background-size: cover;
 }

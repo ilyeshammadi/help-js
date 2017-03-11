@@ -1,10 +1,15 @@
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
+from django.views.generic import CreateView
 
-from .forms import ArticleForm
-from .models import Article
+from .forms import ArticleForm, AddTopicForm
+from .models import Article, Session, Topic
 
+
+def home(request):
+    return render(request, 'home.html')
 
 # Create your views here.
 def index(request):
@@ -113,3 +118,63 @@ def delete(request, id):
     article.delete()
     messages.warning(request, "Article deleted")
     return redirect('articles:index')
+
+@login_required
+def create_chatroom(request, topic_id):
+    """Create a Chatroom using the Topic ID"""
+    topic = get_object_or_404(Topic, pk=topic_id)
+
+    session = Session()
+    session.topic = topic
+    session.junior = request.user
+    session.save()
+
+    return redirect('articles:chatroom', id=session.id)
+
+
+@login_required
+def chatroom(request, id):
+    # Get the session from the database
+    session = get_object_or_404(Session, pk=id)
+    context = {
+        'session' : session
+    }
+    return render(request, 'chatroom.html', context)
+
+
+class TopicCreateView(CreateView):
+    model = Topic
+    form_class = AddTopicForm
+    template_name = 'topic_add.html'
+
+
+def search_topics(request):
+    topics = Topic.objects.all()
+    search = None
+
+    if request.method == 'POST':
+        search = request.POST.get('search')
+
+    if search:
+        terms = search.split(',')
+
+        print("---------------- Terms ----------------")
+        print(terms)
+
+        q = Q()
+
+        # Go through each term
+        for term in terms:
+            q |= Q(name__contains=term)
+            q |= Q(description__contains=term)
+            # q |= Q(tags__name__contains=term)
+
+        topics = topics.filter(q).distinct()
+
+
+    context = {
+        'topics' : topics
+    }
+
+
+    return render(request, 'search.html', context)

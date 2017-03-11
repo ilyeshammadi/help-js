@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block css %}
+    {{ block.super }}
+    <style>
+        .submit {
+            display: flex;
+            justify-content: center;
+
+            margin-bottom: 12px;
+        }
+
+        .wrapper {
+            padding: 22px;
+            background-color: white;
+        }
+
+
+
+        #cont {
+            margin-top: 120px;
+        }
+    </style>
+{% endblock %}
+
+
+{% block content %}
+
+    <div id="cont" class="container">
+        <h2 style="text-align: center">Add new topic</h2>
+        <div class="row">
+            <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+                <div class="wrapper">
+                    <form method="post">
+                        {% csrf_token %}
+                        {{ form|crispy }}
+                        <div class="submit">
+                            <button class="btn btn-primary" type="submit">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

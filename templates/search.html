@@ -1,0 +1,180 @@
+{% extends 'home.html' %}
+
+
+{% block css %}
+    {{ block.super }}
+    <style>
+        header {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #search-bar {
+            width: 55%;
+        }
+
+        #search-bar input, button {
+            margin-top: 20px;
+            height: 55px;
+            font-size: 20px;
+        }
+
+        #search-bar button {
+            width: 80px;
+        }
+
+        header h1 {
+            color: white;
+        }
+
+        h1 {
+            width: 35%;
+            font-weight: 300;
+            font-size: 60px;
+        }
+
+        h2 {
+            font-weight: 300;
+            font-size: 45px;
+        }
+
+        section {
+            margin: auto;
+            padding-top: 45px;
+            padding-bottom: 90px;
+            text-align: center;
+        }
+
+        .section-feature {
+            text-align: center;
+
+        }
+
+        section h2 {
+            display: inline-block;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-feature .row {
+            width: 90%;
+            margin: auto;
+            text-align: left;
+        }
+
+        .section-feature i {
+            font-size: 60px;
+        }
+
+        .box div {
+            text-align: center;
+        }
+
+        .section-how-it-works {
+            background-color: white;
+        }
+
+        .section-how-it-works i {
+            font-size: 80px;
+            border: 1px solid black;
+            padding: 20px 38px;
+            border-radius: 200px;
+        }
+
+        .section-how-it-works .row p {
+            margin-top: 50px;
+        }
+
+        .section-how-it-works .row {
+            margin-top: 0px;
+        }
+    </style>
+    <style>
+
+
+        #search-bar-container {
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 60px;
+        }
+
+        #add-topic {
+            margin-top: 20px;
+            display: inline-block;
+            margin-left: 195px;
+        }
+
+        #add-topic i {
+            font-size: 30px;
+            vertical-align: middle;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2">
+                <a id="add-topic" class="btn btn-primary" href="{% url 'articles:create' %}">
+                    <i class="ion-ios-plus-outline"></i>
+                    Add Topic
+                </a>
+            </div>
+
+
+            <div class="">
+                <form id="search-bar-container" method="post">
+
+                    {% csrf_token %}
+                    <div id="search-bar" class="input-group">
+                        <input type="text" class="form-control" placeholder="ex: Python, React, Algorithm"
+                               name="search">
+                        <span class="input-group-btn">
+        <button class="btn btn-primary" type="submit">Go!</button>
+      </span>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+
+        <div class="row">
+
+            <div class="col-md-8 col-md-offset-2">
+                <div class="list-group">
+                    <div class="list-group">
+                        {% for topic in topics %}
+                            <a href="{% url 'articles:create-chatroom' topic.id %}" class="list-group-item">
+                                <h4>{{ topic.name }}</h4>
+                                <div>
+                                    {% for tag in topic.tags.all %}
+                                        <span class="label label-default">{{ tag }}</span>
+                                    {% endfor %}
+
+                                </div>
+                            </a>
+                        {% endfor %}
+
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+{% endblock %}

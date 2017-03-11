@@ -25,7 +25,7 @@ SECRET_KEY = '#z^z3_+7u5+x86rwq5y-16te3d!g#*78xvsq6=t75+c1q&2jtg'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -40,6 +40,8 @@ INSTALLED_APPS = [
 
     # Third party apps
     'crispy_forms',
+    'channels',
+    'taggit',
 
     # My local apps
     'articles',
@@ -135,3 +137,13 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
 AUTH_USER_MODEL = 'users.User'
+
+
+
+# In settings.py
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "asgiref.inmemory.ChannelLayer",
+        "ROUTING": "blog.routing.channel_routing",
+    },
+}

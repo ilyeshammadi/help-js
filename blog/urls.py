@@ -18,9 +18,12 @@ from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
 
+from articles import views
+
 urlpatterns = [
+    url(r'^$', views.home, name='home'),
     url(r'^admin/', admin.site.urls),
-    url(r'^', include('articles.urls', namespace='articles')),
+    url(r'^chat/', include('articles.urls', namespace='articles')),
     url(r'^users/', include('users.urls', namespace='users'))
 ]
 
