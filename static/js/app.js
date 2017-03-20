@@ -135,6 +135,20 @@
             seconds = (seconds < 0) ? 59 : seconds;
             seconds = (seconds < 10) ? '0' + seconds : seconds;
             //minutes = (minutes < 10) ?  minutes : minutes;
+
+            console.log(chatroomSessionID);
+
+
+            // If time has ended
+            if (minutes == 0 && seconds == 0) {
+                // Session ended = true
+                alert('Session time has ended');
+
+                // Redirect
+                window.location.replace('http://' + window.location.host + '/')
+            }
+
+
             $('#countdown').html(minutes + ':' + seconds);
             timer2 = minutes + ':' + seconds;
         }, 1000);

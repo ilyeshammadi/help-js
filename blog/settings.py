@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'channels',
     'taggit',
 
+
     # My local apps
     'articles',
     'users'
@@ -147,3 +148,9 @@ CHANNEL_LAYERS = {
         "ROUTING": "blog.routing.channel_routing",
     },
 }
+
+
+
+LOGIN_URL = '/users/login'
+LOGIN_REDIRECT_URL = '/'
+

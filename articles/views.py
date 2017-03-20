@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.views.generic import CreateView
@@ -136,6 +137,10 @@ def create_chatroom(request, topic_id):
 def chatroom(request, id):
     # Get the session from the database
     session = get_object_or_404(Session, pk=id)
+
+    if session.ended:
+        return redirect('articles:index')
+
     context = {
         'session' : session
     }
@@ -178,3 +183,14 @@ def search_topics(request):
 
 
     return render(request, 'search.html', context)
+
+
+def session_ended(request, id):
+    print(id)
+    session = get_object_or_404(Session, pk=id)
+    session.ended = True
+    print(session)
+    session.save()
+    return JsonResponse({'message' : 'session deleted'})
+
+

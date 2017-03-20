@@ -25,7 +25,7 @@ def login(request):
             auth.login(request, user)
             messages.success(request, 'Welcome back ' + str(username))
             # Redirect to a success page.
-            return redirect('articles:index')
+            return redirect('home')
         else:
             # Return an 'invalid login' error message.
             messages.warning(request, 'This user does not exist')
@@ -51,7 +51,7 @@ def register(request):
             auth.login(request, user)
             messages.success(request, 'Welcome to the blog ' + str(username))
             # Redirect to a success page.
-            return redirect('articles:index')
+            return redirect('home')
         else:
             # Return an 'invalid login' error message.
             messages.warning(request, 'This user does not exist')
@@ -67,4 +67,4 @@ def register(request):
 def logout(request):
     auth.logout(request)
     messages.success(request, 'Bye Bye !!')
-    return redirect('articles:index')
+    return redirect('home')

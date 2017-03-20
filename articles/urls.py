@@ -17,5 +17,10 @@ urlpatterns = [
         r'^create-chatroom/(?P<topic_id>\d+)$',
         view=create_chatroom,
         name='create-chatroom'
+    ),
+    url(
+        r'^end-session/(?P<id>\d+)$',
+        view=session_ended,
+        name='session-end'
     )
 ]
