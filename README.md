@@ -1,7 +1,7 @@
 # Hellp JS
 An open platform for coding and chating between senior and junior for 15 min
 
-![]()
+![](https://github.com/Ilyes-Hammadi/help-js/blob/master/docs/img/demo.gif)
 
 
 ## Features
